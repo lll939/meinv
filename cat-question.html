@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>专属猫咪小问卷</title>
+    <style>
+        body {
+            background: url('https://s21.ax1x.com/2025/03/04/pEJmT8s.jpg') center/cover no-repeat fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: '微软雅黑', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* 半透明遮罩层 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 192, 203, 0.7); /* 粉色半透明遮罩 */
+            z-index: -1;
+        }
+
+        h1 {
+            color: #ff1493;
+            text-shadow: 2px 2px 4px white;
+            font-size: 2.5em;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #yesBtn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+        }
+
+        #noBtn {
+            background: linear-gradient(45deg, white, #ffe6f0);
+            color: #ff1493;
+            border: 2px solid #ff69b4;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>你愿意做王蕾的仆人吗？🐾</h1>
+    <div class="buttons">
+        <button id="yesBtn">愿 意</button>
+        <button id="noBtn">不愿意</button>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        let clickCount = 0;
+        let scale = 1;
+
+        noBtn.addEventListener('click', function() {
+            clickCount++;
+            const texts = ['不愿意', '为什么不愿意', '不 行'];
+            noBtn.textContent = texts[clickCount % 3];
+            
+            scale += 0.2;
+            yesBtn.style.transform = `scale(${scale}) rotate(${clickCount * 5}deg)`;
+        });
+
+        yesBtn.addEventListener('click', function() {
+            document.body.style.backgroundBlendMode = 'luminosity';
+            yesBtn.innerHTML = '❤️ 已绑定终身 ❤️';
+            noBtn.style.display = 'none';
+            setTimeout(() => {
+                alert('🎉 契约成立！您已成为王蕾的专属仆人！\n🐾 请每日投喂小鱼干～');
+            }, 300);
+        });
+    </script>
+</body>
+</html>
